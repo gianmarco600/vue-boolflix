@@ -39,7 +39,7 @@ export default {
         margin-top: 10px;
     }
     h4,h3,h5{
-        color: #E50914;
+        color: $netRed;
     }
 }
 .film{

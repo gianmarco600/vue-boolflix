@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <p>ciao</p>
+    
     <ShowBox/>
   </div>
 </template>

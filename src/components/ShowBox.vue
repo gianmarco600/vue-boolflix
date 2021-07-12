@@ -1,6 +1,7 @@
 <template>
-    <div class="container-md">
-        <input v-model="inputQuery" :keyup="APIcall" type="text" name="movieTitle" id="movieTitle" >
+    <div class="container-md text-center">
+        <h1>Trova film</h1>
+        <input v-model="inputQuery" placeholder="Es: 'matrix'" :keyup="APIcall" type="text" name="movieTitle" id="movieTitle" >
         <div class="scaffale">
             <MovieCard v-for="(risultato, i) in queryOutput" :key="i" :risultato="risultato"/>
         </div>
@@ -24,7 +25,8 @@ export default {
             inputQuery:'',
             queryOutput:[],
             LastSrc:[],
-            lastInputQuery:''
+            lastInputQuery:'',
+            lang:'it-IT'
         }
     },
 updated() {
@@ -48,7 +50,7 @@ updated() {
                 params: {
                     api_key : '37810146412a45c0824ff15ce4b214ba',
                     query : inputText,
-                    language : 'it-IT'
+                    language : this.lang
                 }
             })   
             .then(res => {
@@ -58,7 +60,10 @@ updated() {
             .catch((error) => {
             console.log('Errore : ' + error);
         });
-        }
+        },
+        // changeLang(){
+        //     this.lang ==
+        // }
     }
 
 }
@@ -67,6 +72,26 @@ updated() {
 <style lang="scss" scoped>
 @import '@/style/commons.scss';
 @import '@/style/vars.scss';
+
+h1{
+    margin: 40px;
+    color: black;
+    background-color: $netRed;
+    border-radius: 15px;
+}
+
+input{
+    margin: 20px;
+    background-color: $netRed;
+    color: black;
+    padding: 7px;
+    height: 40px;
+    width: 300px;
+    border: none;
+    font-size: 25px;
+    font-weight: 500;
+    border-radius: 15px;
+}
 
 .scaffale{
     width: 100%;
