@@ -1,20 +1,24 @@
 <template>
-    <div class="container-md text-center">
+    <div class="container-sm text-center">
         <h1>Trova film</h1>
         <input v-model="inputQuery" placeholder="Es: 'matrix'" :keyup="APIcallM" type="text" name="movieTitle" id="movieTitle" >
         <div class="porta_scaffali row justify-content-around">
-            <div class="col-sm-5">
-                <div class="row scaffale ">
-                    <MovieCard class="_card col-sm-6" v-for="risultatoM in queryOutputM" :key="risultatoM.id" :risultatoM="risultatoM"/>
+            <div class="col-sm-5 " :class="[(queryOutputTS.length == 0 ? 'col-sm-12' : 'col-sm-5'), (queryOutputM.length == 0 ? 'hidden' : 'show')]">
+                <div  class="row scaffale justify-content-center">
+                    <MovieCard  :class="[queryOutputTS.length == 0 ? 'col-sm-3' : 'col-sm-10']" class="_card" v-for="risultatoM in queryOutputM" :key="risultatoM.id" :risultatoM="risultatoM"/>
                 </div>
             </div>
-            <div class="col-sm-5">
-                <div class="row scaffale _TS">
-                    <TvShowsCard class="_card col-sm-6" v-for="risultatoTS in queryOutputTS" :key="risultatoTS.id" :risultatoTS="risultatoTS"/>
+            <div class="col-sm-5 " :class="[(queryOutputM.length == 0 ? 'col-sm-12' : 'col-sm-5') ,( queryOutputTS.length == 0 ? 'hidden' : 'show')]">
+                <div class="row scaffale _TS justify-content-center" >
+                    <TvShowsCard :class="[queryOutputM.length == 0 ? 'col-sm-3' : 'col-sm-10']" class="_card" v-for="risultatoTS in queryOutputTS" :key="risultatoTS.id" :risultatoTS="risultatoTS"/>
                 </div>
             </div>
         </div>
-            
+           <!-- :class="(queryOutputTS.length == 0 ? 'col-sm-12' : 'col-sm-6' , queryOutputM.length == 0 ? 'hidden' : 'show'   )"  
+           :class="(queryOutputM.length == 0 ? 'hidden' : 'show')"
+           :class="(queryOutputTS.length == 0 ? 'col-sm-12' : 'col-sm-6')"
+           :class="( (queryOutputM.length == 0 ? 'col-sm-12' : 'col-sm-5'),( queryOutputTS.length == 0 ? 'hidden' :  'show'))"
+           :class="(queryOutputM.length == 0 ? 'col-sm-3' : 'col-sm-6')" -->
     </div>
 </template>
 
@@ -95,6 +99,7 @@ updated() {
             console.log('Errore : ' + error);
             });
         }
+
         
         
     }
@@ -128,16 +133,21 @@ input{
 }
 
 .scaffale{
+    width: 100%;
     background-color:rgb(86,77,77);
     min-height: 60vh;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
     border: 10px solid $netRed;
+
 }
 
 ._card{
     padding: 10px;
+    
+    min-height: 450px;
+    max-height: 500px;
 }
 
 ._TS{

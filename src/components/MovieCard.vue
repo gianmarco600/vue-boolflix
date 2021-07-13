@@ -9,6 +9,7 @@
             <country-flag :country='getLang(risultatoM.original_language)' :alt="risultatoM.original_language" size='normal'/> 
             <h5>rating:</h5>
             {{risultatoM.vote_average}}
+            <img class="copertina" :src="imgPATH + 'w500' + risultatoM.poster_path" :alt="risultatoM.title">
         </div>
     </div>
 </template>
@@ -27,7 +28,8 @@ export default {
     },
     data(){
         return{
-            queryOutput:''
+            queryOutput:'',
+            imgPATH: 'https://image.tmdb.org/t/p/'
         }
     },
     methods:{
@@ -55,15 +57,28 @@ export default {
     // text-align: center;
     padding: 15px;
     // margin: 15px;
+    position: relative;
     h4,h5{
         margin-top: 10px;
     }
     h4,h3,h5{
         color: $netRed;
     }
+    &:hover .copertina{
+        opacity: 0.2;
+        
+    }
 }
 ._box{
     padding: 15px;
+}
+.copertina{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    
 }
 // .film{
 //     width: calc(100% / 4 - 30px);

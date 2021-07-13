@@ -9,6 +9,7 @@
             <country-flag :country='getLang(risultatoTS.original_language)' size='normal'/> 
             <h5>rating:</h5>
             {{risultatoTS.vote_average}}
+            <img class="copertina" :src="imgPATH + 'w500' + risultatoTS.poster_path" :alt="risultatoTS.name">
         </div>
     </div>
 </template>
@@ -19,14 +20,15 @@ import CountryFlag from 'vue-country-flag';
 export default {
     name:"TvShowsCard",
     props:[
-        'risultatoTS',
-    ],
+        'risultatoTS'
+        ],
     components: {
         CountryFlag
     },
     data(){
         return{
-            queryOutput:''
+            queryOutput:'',
+            imgPATH: 'https://image.tmdb.org/t/p/'
         }
     },
     methods:{
@@ -54,6 +56,7 @@ export default {
     height: 100%;
     // text-align: center;
     padding: 15px;
+    position: relative;
     // margin: 15px;
     h4,h5{
         margin-top: 10px;
@@ -61,8 +64,20 @@ export default {
     h4,h3,h5{
         color: $netRed;
     }
+    &:hover .copertina{
+        opacity: 0.2;
+        
+    }
 }
 ._box{
     padding: 15px;
+}
+.copertina{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    
 }
 </style>
