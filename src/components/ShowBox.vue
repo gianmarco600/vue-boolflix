@@ -3,7 +3,7 @@
         <h1>Trova film</h1>
         <input v-model="inputQuery" placeholder="Es: 'matrix'" :keyup="APIcall" type="text" name="movieTitle" id="movieTitle" >
         <div class="scaffale">
-            <MovieCard v-for="(risultato, i) in queryOutput" :key="i" :risultato="risultato"/>
+            <MovieCard v-for="risultato in queryOutput" :key="risultato.id" :risultato="risultato"/>
         </div>
     </div>
 </template>

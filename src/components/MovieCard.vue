@@ -5,23 +5,40 @@
       <h4>titolo originale:</h4>
       {{risultato.original_title}}
       <h4>lingua:</h4>
-      {{risultato.original_language}}  
+      <country-flag :country='getLang(risultato.original_language)' :alt="risultato.original_language" size='normal'/> 
       <h5>rating:</h5>
       {{risultato.vote_average}}
   </div>
 </template>
 
 <script>
+
+import CountryFlag from 'vue-country-flag';
+
 export default {
     name:'MovieCard',
     props:[
         'risultato',
     ],
+    components: {
+        CountryFlag
+    },
     data(){
         return{
             queryOutput:''
         }
     },
+    methods:{
+        getLang(film){
+            
+            let country = film.slice(0,2);
+            if(country == 'en'){
+                country = 'us';
+            }
+            console.log(country);
+            return country
+        }
+    }
 }
 </script>
 
