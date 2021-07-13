@@ -10,7 +10,7 @@
 
 body{
     font-family: 'Montserrat', sans-serif;
-    background-color: black;
+    background-color: rgb(34, 34, 34);
 }
 
 .hidden{
@@ -19,4 +19,20 @@ body{
 
 .show{
     display: flex;
+}
+
+.clearfix::after{
+    content:'';
+    display: table;
+    clear: both;
+}
+
+.f_r{
+    float: right;
+    color: $tvYell;
+}
+
+.f_l{
+    float: left;
+    color: $netRed;
 }

@@ -6,12 +6,13 @@
             <h4>titolo originale:</h4>
             {{risultatoTS.original_name}}
             <h4>lingua:</h4>
-            <country-flag :country='getLang(risultatoTS.original_language)' size='normal'/> 
+            <country-flag :country='risultatoTS.original_language' size='normal'/> 
             <h5>rating:</h5>
             {{risultatoTS.vote_average}}
             <h5>overview</h5>
-            {{risultatoTS.overview.slice(0, 90) + '...'}}
-            <img class="copertina" :src="imgPATH + 'w500' + risultatoTS.poster_path" :alt="risultatoTS.name">
+            {{risultatoTS.overview.slice(0, 75) + '...'}}
+            <img v-if="!posterCheck(risultatoTS.poster_path)" class="copertina" :src="imgPATH + 'w500' + risultatoTS.poster_path" :alt="risultatoTS.name">
+            <div v-else  class="copertina _bg row align-items-center"><h6>{{risultatoTS.name}}</h6></div>
         </div>
     </div>
 </template>
@@ -22,7 +23,8 @@ import CountryFlag from 'vue-country-flag';
 export default {
     name:"TvShowsCard",
     props:[
-        'risultatoTS'
+        'risultatoTS',
+        
         ],
     components: {
         CountryFlag
@@ -42,6 +44,13 @@ export default {
             }
             console.log(country);
             return country
+        },
+        posterCheck(comp){
+            
+            if (comp == null ){
+                return true
+            }
+            return false
         }
     }
 }
@@ -60,9 +69,10 @@ export default {
     padding: 15px;
     position: relative;
     z-index: 1;
+    overflow: hidden;
     // margin: 15px;
     h4,h5{
-        margin-top: 10px;
+        margin-top: 4px;
     }
     h4,h3,h5{
         color: $netRed;
@@ -83,5 +93,16 @@ export default {
     left: 0;
     top: 0;
     
+}
+
+._bg{
+    background: rgb(0,0,0);
+    background: linear-gradient(33deg, rgba(0,0,0,1) 0%, rgba(221,176,33,1) 71%); 
+    
+    left: 11px;
+    h6{
+        font-size: 20px;
+        font-weight: 500;
+    }
 }
 </style>

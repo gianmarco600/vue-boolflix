@@ -10,8 +10,9 @@
             <h5>rating:</h5>
             {{risultatoM.vote_average}}
             <h5>overview</h5>
-            {{risultatoM.overview.slice(0, 90) + '...'}}
-            <img class="copertina" :src="imgPATH + 'w500' + risultatoM.poster_path" :alt="risultatoM.title">
+            {{risultatoM.overview.slice(0, 75) + '...'}}
+            <img v-if="!posterCheck(risultatoM.poster_path)" class="copertina" :src="imgPATH + 'w500' + risultatoM.poster_path" :alt="risultatoM.title">
+            <div v-else  class="copertina _bg row align-items-center"><h6>{{risultatoM.title}}</h6></div>
         </div>
     </div>
 </template>
@@ -43,6 +44,13 @@ export default {
             }
             // console.log(country);
             return country
+        },
+        posterCheck(comp){
+            
+            if (comp == null ){
+                return true
+            }
+            return false
         }
     }
 }
@@ -60,8 +68,9 @@ export default {
     padding: 15px;
     // margin: 15px;
     position: relative;
+    overflow: hidden;
     h4,h5{
-        margin-top: 10px;
+        margin-top: 4px;
     }
     h4,h3,h5{
         color: $netRed;
@@ -81,6 +90,17 @@ export default {
     left: 0;
     top: 0;
     
+}
+
+._bg{
+    background: rgb(0,0,0);
+    background: linear-gradient(33deg, rgba(0,0,0,1) 0%, rgba(229,9,20,1) 71%); 
+    
+    left: 11px;
+    h6{
+        font-size: 20px;
+        font-weight: 500;
+    }
 }
 // .film{
 //     width: calc(100% / 4 - 30px);
