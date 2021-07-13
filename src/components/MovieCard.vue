@@ -9,6 +9,8 @@
             <country-flag :country='getLang(risultatoM.original_language)' :alt="risultatoM.original_language" size='normal'/> 
             <h5>rating:</h5>
             {{risultatoM.vote_average}}
+            <h5>overview</h5>
+            {{risultatoM.overview.slice(0, 90) + '...'}}
             <img class="copertina" :src="imgPATH + 'w500' + risultatoM.poster_path" :alt="risultatoM.title">
         </div>
     </div>

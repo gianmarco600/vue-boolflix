@@ -9,6 +9,8 @@
             <country-flag :country='getLang(risultatoTS.original_language)' size='normal'/> 
             <h5>rating:</h5>
             {{risultatoTS.vote_average}}
+            <h5>overview</h5>
+            {{risultatoTS.overview.slice(0, 90) + '...'}}
             <img class="copertina" :src="imgPATH + 'w500' + risultatoTS.poster_path" :alt="risultatoTS.name">
         </div>
     </div>
@@ -51,12 +53,13 @@ export default {
 @import '@/style/vars.scss';
 
 .risultatoTS{
-    background-color: rgb(31, 31, 31);
+    background-color: rgba(31, 31, 31, 0.52);
     color: white;
     height: 100%;
     // text-align: center;
     padding: 15px;
     position: relative;
+    z-index: 1;
     // margin: 15px;
     h4,h5{
         margin-top: 10px;
@@ -66,6 +69,7 @@ export default {
     }
     &:hover .copertina{
         opacity: 0.2;
+        z-index: 0;
         
     }
 }

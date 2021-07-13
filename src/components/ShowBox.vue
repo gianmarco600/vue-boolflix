@@ -1,15 +1,16 @@
 <template>
     <div class="container-sm text-center">
-        <h1>Trova film</h1>
+        <h1>Trova film & tv-shows</h1>
+        <h2>inserisci il titolo</h2>
         <input v-model="inputQuery" placeholder="Es: 'matrix'" :keyup="APIcallM" type="text" name="movieTitle" id="movieTitle" >
         <div class="porta_scaffali row justify-content-around">
             <div class="col-sm-5 " :class="[(queryOutputTS.length == 0 ? 'col-sm-12' : 'col-sm-5'), (queryOutputM.length == 0 ? 'hidden' : 'show')]">
-                <div  class="row scaffale justify-content-center">
+                <div  class="row scaffale justify-content-center align-items-start">
                     <MovieCard  :class="[queryOutputTS.length == 0 ? 'col-sm-3' : 'col-sm-10']" class="_card" v-for="risultatoM in queryOutputM" :key="risultatoM.id" :risultatoM="risultatoM"/>
                 </div>
             </div>
             <div class="col-sm-5 " :class="[(queryOutputM.length == 0 ? 'col-sm-12' : 'col-sm-5') ,( queryOutputTS.length == 0 ? 'hidden' : 'show')]">
-                <div class="row scaffale _TS justify-content-center" >
+                <div class="row scaffale _TS justify-content-center align-items-start" >
                     <TvShowsCard :class="[queryOutputM.length == 0 ? 'col-sm-3' : 'col-sm-10']" class="_card" v-for="risultatoTS in queryOutputTS" :key="risultatoTS.id" :risultatoTS="risultatoTS"/>
                 </div>
             </div>
@@ -146,8 +147,8 @@ input{
 ._card{
     padding: 10px;
     
-    min-height: 450px;
-    max-height: 500px;
+    height: 470px;
+    // max-height: 500px;
 }
 
 ._TS{
