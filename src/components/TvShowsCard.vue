@@ -1,26 +1,25 @@
 <template>
     <div class="_box">
-        <div class="risultatoM film "> 
+        <div class="risultatoTS film "> 
             <h3>Titolo:</h3>
-            {{risultatoM.title}}
+            {{risultatoTS.name}}
             <h4>titolo originale:</h4>
-            {{risultatoM.original_title}}
+            {{risultatoTS.original_name}}
             <h4>lingua:</h4>
-            <country-flag :country='getLang(risultatoM.original_language)' :alt="risultatoM.original_language" size='normal'/> 
+            <country-flag :country='getLang(risultatoTS.original_language)' size='normal'/> 
             <h5>rating:</h5>
-            {{risultatoM.vote_average}}
+            {{risultatoTS.vote_average}}
         </div>
     </div>
 </template>
 
 <script>
-
 import CountryFlag from 'vue-country-flag';
 
 export default {
-    name:'MovieCard',
+    name:"TvShowsCard",
     props:[
-        'risultatoM',
+        'risultatoTS',
     ],
     components: {
         CountryFlag
@@ -31,24 +30,25 @@ export default {
         }
     },
     methods:{
-        getLang(film){
+        getLang(tvShow){
             
-            let country = film.slice(0,2);
+            let country = tvShow.slice(0,2);
             if(country == 'en'){
                 country = 'us';
             }
-            // console.log(country);
+            console.log(country);
             return country
         }
     }
 }
+
 </script>
 
 <style lang="scss" scoped>
 @import '@/style/commons.scss';
 @import '@/style/vars.scss';
 
-.risultatoM{
+.risultatoTS{
     background-color: rgb(31, 31, 31);
     color: white;
     height: 100%;
@@ -65,9 +65,4 @@ export default {
 ._box{
     padding: 15px;
 }
-// .film{
-//     width: calc(100% / 4 - 30px);
-
-// }
-
 </style>
