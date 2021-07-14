@@ -18,21 +18,26 @@ body{
 }
 
 .show{
-    display: flex;
+    display: block;
 }
 
-.clearfix::after{
-    content:'';
-    display: table;
-    clear: both;
-}
+// .clearfix::after{
+//     content:'';
+//     display: table;
+//     clear: both;
+// }
 
-.f_r{
-    float: right;
-    color: $tvYell;
-}
-
-.f_l{
-    float: left;
+.section{
+    display: block;
+    text-align: left;
     color: $netRed;
+    width: 100%;
+
+    
 }
+
+._container{
+    width: 80vw;
+    margin: 0 auto;
+}
+

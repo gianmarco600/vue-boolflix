@@ -11,6 +11,7 @@
     "@fontsource/montserrat": "^4.5.0",
     "bootstrap": "^5.0.2",
     "core-js": "^3.6.5",
+    "dayjs": "^1.10.6",
     "save": "^2.4.0",
     "scss": "^0.2.4",
     "scss-loader": "^0.0.1",
