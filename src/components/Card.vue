@@ -5,12 +5,20 @@
             
             <h4>titolo originale: <span>{{risultato.original_name || risultato.original_title}}</span> </h4>
             
-            <div class="row hustify-content-start align-items-center"> <h4 class="col">lingua:</h4> <country-flag class="flag col" :country='getLang(risultato.original_language)' size='normal' :alt="risultato.original_language"/> 
+            <div class="row hustify-content-start align-items-center"> 
+                <h4 class="col">lingua:</h4>     
+                <country-flag class="flag col" :country='getLang(risultato.original_language)' size='normal' :alt="risultato.original_language"/> 
             </div>
             
-            <div class="row hustify-content-start align-items-center">
-            <h5 class="col">rating:</h5>
-            <div> </div>
+            <div class="rating clearfix">
+                <h5 class="rate">rating:</h5>
+                
+                    <i v-if="(Math.ceil(risultato.vote_average)/2) > 1" class="fas stars" ></i> 
+                    <i v-if="(Math.ceil(risultato.vote_average)/2) > 2" class="fas stars" ></i>
+                    <i v-if="(Math.ceil(risultato.vote_average)/2) > 3" class="fas stars" ></i>
+                    <i v-if="(Math.ceil(risultato.vote_average)/2) > 4" class="fas stars" ></i>
+                    <i v-if="(Math.ceil(risultato.vote_average)/2) > 5" class="fas stars" ></i>
+                    
             </div>
 
             <h5>overview: <span>{{risultato.overview.slice(0, 75) + '...'}}</span></h5>
@@ -65,6 +73,28 @@ export default {
 @import '@/style/commons.scss';
 @import '@/style/vars.scss';
 
+.rating{
+    width: 100%;
+}
+
+.rate{
+    float: left;
+}
+
+.star{
+    margin: 0 5px;
+    float: left;
+    vertical-align: bottom;
+    width: 10px;
+    height: 10px;
+    font-size: 10px;
+}
+
+.risultato > i{
+    color: yellow;
+
+}
+
 .risultato{
     background-color: rgba(31, 31, 31, 0.52);
     color: white;
@@ -79,7 +109,7 @@ export default {
     .flag{
         display: inline-block;
         padding: 0;
-        margin-left: -195px;
+        // margin-left: -60%;
     }
     h3{
         margin-top: 7px;
@@ -93,6 +123,7 @@ export default {
         font-size: 15px;
         display: block;
         text-transform: capitalize;
+        flex-grow: 0;
     }
     &:hover .copertina{
         opacity: 0.2;
@@ -124,4 +155,6 @@ export default {
         font-weight: 500;
     }
 }
+
+
 </style>
