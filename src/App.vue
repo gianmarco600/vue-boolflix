@@ -32,12 +32,9 @@ export default {
       
     }
   },
-  mounted(){
-        
-        this.trendingRender();
-        this.getGeneri();
-        console.log(this.queryOutputTS);
-        console.log(this.queryOutputM);
+    beforeMount(){
+      this.trendingRender();
+      this.getGeneri();
   },
   methods:{
     passInput(input){
@@ -97,8 +94,8 @@ export default {
         });
     },
     trendingRender(){
-        let urlM = this.trendingURL + 'movie/day';
-        let urlTS = this.trendingURL + 'tv/day';
+        let urlM = 'https://api.themoviedb.org/3/trending/movie/week';
+        let urlTS = 'https://api.themoviedb.org/3/trending/tv/week';
         axios
             .get(urlM, {
                 params: {
@@ -107,12 +104,12 @@ export default {
             })   
             .then(res => {
                 this.queryOutputM = res.data.results;
+                console.log(res.data.results)
                 
             })
             .catch((error) => {
             console.log('Errore : ' + error);
             });
-            // let url = this.trendingURL + 'movie/day';
 
         axios
             .get(urlTS, {

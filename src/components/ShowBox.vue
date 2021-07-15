@@ -1,18 +1,18 @@
 <template>
     <div class="_container text-center">
         <h3 class="cerca">cerca: {{inputQuery}}</h3>
-        <div class=" porta_scaffali">
+        <div v-if="queryOutputTS != [] || queryOutputM != []" class=" porta_scaffali">
             
             <div v-if='queryOutputM.length != 0'>
                 <h2 v-if='queryOutputM.length != 0' class="_label section">Movies</h2>
                 <div v-if='queryOutputM.length != 0' class="row scaffale justify-content-start align-items-start">
-                    <Card :listaGeneri='listaGeneriM' class="_card" v-for="(risultatoM , i) in queryOutputM" :key="i"  :risultato="risultatoM"/>
+                    <Card :listaGeneri='listaGeneriM' class="_card" v-for="risultatoM  in queryOutputM" :key="risultatoM.id"  :risultato="risultatoM"/>
                 </div>
             </div>
             <div  v-if='queryOutputTS.length != 0'>
                 <h2 v-if='queryOutputTS.length != 0' class="_label section">Tv Shows</h2>
                 <div class="row scaffale justify-content-start align-items-start" >
-                    <Card :listaGeneri='listaGeneriTS' class="_card" v-for="(risultatoTS , i) in queryOutputTS" :key="i" :risultato="risultatoTS"/>
+                    <Card :listaGeneri='listaGeneriTS' class="_card" v-for="risultatoTS  in queryOutputTS" :key="risultatoTS.id" :risultato="risultatoTS"/>
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@
             
             <div class="rating ">
                 <h5 class="rate">rating:</h5>
-                    <i v-for="i in (Math.ceil(risultato.vote_average)/2)" :key="i" class="fa fa-star full" ></i> 
+                    <i v-for="i in ((Math.ceil(risultato.vote_average))/2)" :key="i" class="fa fa-star full" ></i> 
             </div> 
             <div class="cast">
                 <h5>info</h5> 
@@ -49,6 +49,7 @@ export default {
         CountryFlag
     },
     mounted(){
+        if( this.listaGeneri != [] )
         this.getCast(this.risultato);
         this.translateGenere();
     },
