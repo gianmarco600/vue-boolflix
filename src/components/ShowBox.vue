@@ -1,17 +1,18 @@
 <template>
     <div class="_container text-center">
-        <div :class="(queryOutputTS.length == 0 && queryOutputM.length == 0 ? 'hidden' : 'show')"  class=" porta_scaffali">
+        <h3 class="cerca">cerca: {{inputQuery}}</h3>
+        <div class=" porta_scaffali">
             
-            <div :class="(queryOutputM.length == 0 ? 'hidden' : 'show')">
+            <div v-if='queryOutputM.length != 0'>
                 <h2 v-if='queryOutputM.length != 0' class="_label section">Movies</h2>
-                <div  class="row scaffale justify-content-start align-items-start">
-                    <Card class="_card" v-for="risultatoM in queryOutputM" :key="risultatoM.id"  :risultato="risultatoM"/>
+                <div v-if='queryOutputM.length != 0' class="row scaffale justify-content-start align-items-start">
+                    <Card :listaGeneri='listaGeneriM' class="_card" v-for="(risultatoM , i) in queryOutputM" :key="i"  :risultato="risultatoM"/>
                 </div>
             </div>
-            <div :class="( queryOutputTS.length == 0 ? 'hidden' : 'show')">
+            <div  v-if='queryOutputTS.length != 0'>
                 <h2 v-if='queryOutputTS.length != 0' class="_label section">Tv Shows</h2>
                 <div class="row scaffale justify-content-start align-items-start" >
-                    <Card class="_card" v-for="risultatoTS in queryOutputTS" :key="risultatoTS.id" :risultato="risultatoTS"/>
+                    <Card :listaGeneri='listaGeneriTS' class="_card" v-for="(risultatoTS , i) in queryOutputTS" :key="i" :risultato="risultatoTS"/>
                 </div>
             </div>
         </div>
@@ -34,7 +35,10 @@ export default {
     },
     props:{
         queryOutputTS: Array,
-        queryOutputM: Array
+        queryOutputM: Array,
+        inputQuery: String,
+        listaGeneriTS: Array,
+        listaGeneriM: Array
     },
 }
 </script>
@@ -53,12 +57,6 @@ h1{
     background-color: $netRed;
     border-radius: 15px;
     padding:15px;
-}
-
-.title{
-    color: $netRed;
-    text-transform: uppercase;
-    font-weight: 600;
 }
 
 input{
@@ -104,9 +102,23 @@ input{
     }
 }
 
-
+.cerca{
+    color: white;
+    text-align: left;
+    margin-left: 40px;
+    text-transform: uppercase;
+    background-color: #202020;
+    display: inline-block;
+    
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+}
 
 ._label{
     display: inline-block;
+    color: white;
+    margin-left: 40px;
+    
 }
 </style>

@@ -37,7 +37,7 @@ export default {
 header{
     width: 100%;
     height: 100px;
-    background-color: $netRed;
+    background-color: rgb(32, 32, 32);
 }
 
 ._container{
@@ -51,6 +51,7 @@ header{
     font-size: 50px;
     text-transform: uppercase;
     font-weight: 100;
+    color: $netRed;
 }
 
 .nav{
@@ -66,11 +67,12 @@ header{
     align-items: center;
     justify-content: flex-end;
     font-weight: 700;
+    color: #3a3a3a;
     font-size: 20px;
     &:hover .search{
         width: 300px;
         transition: width 0.7s;
-        background-color: #222222;
+        background-color: #3a3a3a;
     }
 }
 
@@ -80,7 +82,7 @@ header{
     flex-grow: 0;
     background-color: #22222200;
     box-sizing: content-box;
-    border: 5px solid #222222;
+    border: 5px solid $netRed;
     height: 60%;
     border-radius: 20px;
     transition: 0.5s;
